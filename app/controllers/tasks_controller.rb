@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
-  before_action :find_tasks, only: %i[edit update show destroy]
-  def index; end
+  before_action :find_task, only: [:edit, :update, :show, :destroy]
+  def index
+    @tasks = Task.all.order("created_at DESC")
+  end
 
   def show; end
 
@@ -13,9 +15,9 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(tasks_params)
     if @task.save
-      redirect_to @task
+      redirect_to(@task)
     else
-      render 'new'
+      render("new")
     end
   end
 
@@ -28,7 +30,7 @@ class TasksController < ApplicationController
   private
 
   def tasks_params
-    params_require(:task).permit(:title, :description, :company, :url)
+    params.require(:task).permit(:title, :description, :company, :url)
   end
 
   def find_task
