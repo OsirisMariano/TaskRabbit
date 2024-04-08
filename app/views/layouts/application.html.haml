@@ -13,24 +13,7 @@
         - Category.all.each do |category|
           %li= link_to category.name, tasks_path(category: category.name)
       = link_to "New Task", new_task_path, class: "navbar-text navbar-rigth navbar-link" 
+
   .container
+    .col-md-8.col-md-offset-2
     = yield
-
-
-
--# <!DOCTYPE html>
--# <html>
--#   <head>
--#     <title>Rabbit</title>
--#     <meta name="viewport" content="width=device-width,initial-scale=1">
--#     <%= csrf_meta_tags %>
--#     <%= csp_meta_tag %>
-
--#     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
--#     <%= javascript_importmap_tags %>
--#   </head>
-
--#   <body>
--#     <%= yield %>
--#   </body>
--# </html>
